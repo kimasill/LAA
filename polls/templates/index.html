@@ -1,0 +1,9 @@
+{% if characters %}
+    <ul>
+    {% for character in characters %}
+        <li><a href="{%url 'detail' character.CharacterName %}">{{ character.CharacterName }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}

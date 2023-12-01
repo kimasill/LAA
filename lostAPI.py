@@ -1,19 +1,21 @@
-import json
 import requests
 from lostark_api_token import Token
 
 headers = {
-    'accept': 'application/json',
-    'authorization': Token
-}
+        'accept': 'application/json',
+        'authorization': Token
+    }
+def getJsonObjectFromResponse(url):
+    response = requests.get(url, headers=headers)
+    jsonObject = response.json()
+    return jsonObject
 
-#url = 'https://developer-lostark.game.onstove.com/news/events'
-url = 'https://developer-lostark.game.onstove.com/characters/엉루지/siblings'
-response = requests.get(url, headers=headers)
-jsonObject = response.json()
+def getCharacterInfo(character_name):
+    url = f'https://developer-lostark.game.onstove.com/characters/{character_name}/siblings'
+    jsonObject = getJsonObjectFromResponse(url)
+    return jsonObject
 
-print(response)
-
-for list in jsonObject :
-    if list.get('ServerName') == '카단':
-        print(list)
+def getArmories(character_name, details = None):
+    url = f'https://developer-lostark.game.onstove.com/armories/characters/{character_name}/{details}'
+    jsonObject = getJsonObjectFromResponse(url)
+    return jsonObject
