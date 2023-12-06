@@ -3,11 +3,13 @@ a{text-decoration: none;}
 .profile
 {
         position : relative;
+        grid-area: a;
+        display: flex;
+        flex-direction: column;
 }
 
 .profile_img img
 {
-        float: left;
         width: fit-content;
         height: fit-content;
         vertical-align: middle;
@@ -15,14 +17,9 @@ a{text-decoration: none;}
 
 .profile_info
 {
-        position : absolute;
-        top : 40%;
-        left : 50%;
-        width : 100%;
-        transform : translate( -50%, -50% );
-    font-size : 20px;
-    font-family : 'ypseo';
-    text-align : left;
+        background-color: antiquewhite;
+        font-size : 20px;
+        font-family : 'ypseo';
 }
 
 .profile_info p
@@ -30,7 +27,30 @@ a{text-decoration: none;}
     text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white;
 }
 
+.profile_info_stat
+{
+        background-color: aqua;
+}
+
 .profile_info_stat p
 {
         font-size: 10px;
+}
+
+.equipment
+{
+        background-color: aquamarine;
+        float: right;
+        width: fit-content;
+        height: fit-content;
+}
+
+.container
+{
+        display: grid;
+        grid-template-areas: 
+        "header header header"
+        "   a    main    b   "
+        "   .     .      .   "
+        "footer footer footer";
 }

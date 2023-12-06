@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+    <link rel="stylesheet", href="{%static './style.css' %}">
+</head>
+    <body>
+        <div class = "container">
+            <div class ="profile">
+                <div class="profile_img">
+                    <img src = {{ character.CharacterImage }} >
+                </div>
+                <div class="profile_info">
+                    <p>원정대 레벨: {{ character.ExpeditionLevel }}</p>
+                    <p>아이템 레벨: {{ character.ItemMaxLevel }}</p>
+                    <p>칭호 : {{character.Title}}</p>
+                </div>
+                <div class="profile_info_stat">
+                    <p>스탯</p>
+                    {% for stat in stats %}
+                        <p>{{stat.Type}}: {{stat.Value}} </p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class ="equipment">
+                    {% for item in equipment %}
+                    {{ item.Type }}
+                    {{ item.Grade }}
+                    <img src = {{ item.Icon }} >
+                    {% endfor %}
+                </div>
+        </div>
+    </body>
+</html>
