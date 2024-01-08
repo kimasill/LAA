@@ -4,33 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Detail</title>
-    <link rel="stylesheet", href="{%static './style.css' %}">
+    <link rel="stylesheet", href="{%static 'css/style.css'%}">
 </head>
-    <body>
-        <div class = "container">
-            <div class ="profile">
-                <div class="profile_img">
-                    <img src = {{ character.CharacterImage }} >
-                </div>
-                <div class="profile_info">
-                    <p>원정대 레벨: {{ character.ExpeditionLevel }}</p>
-                    <p>아이템 레벨: {{ character.ItemMaxLevel }}</p>
-                    <p>칭호 : {{character.Title}}</p>
-                </div>
-                <div class="profile_info_stat">
-                    <p>스탯</p>
-                    {% for stat in stats %}
-                        <p>{{stat.Type}}: {{stat.Value}} </p>
-                    {% endfor %}
-                </div>
+<body>
+    <div class = "container">
+        <div class ="profile">
+            <div class="profile_img">
+                <img src = {{ character.CharacterImage }} >
             </div>
-            <div class ="equipment">
-                    {% for item in equipment %}
-                    {{ item.Type }}
-                    {{ item.Grade }}
-                    <img src = {{ item.Icon }} >
-                    {% endfor %}
-                </div>
+            <div class="profile_info">
+                <p>원정대 레벨: {{ character.ExpeditionLevel }}</p>
+                <p>아이템 레벨: {{ character.ItemMaxLevel }}</p>
+                <p>칭호 : {{character.Title}}</p>
+            </div>
+            <div class="profile_info_stat">
+                <p>스탯</p>
+                {% for stat in stats %}
+                    <p>{{stat.Type}}: {{stat.Value}} </p>
+                {% endfor %}
+            </div>
         </div>
-    </body>
+        <div class ="equipment">
+            {% for i in "x"|rjust:"10" %}
+            <div class ="equips">
+                {% if i < 6 %}
+                {{ equipment|indexer:i }} <!--equipment[i].Type }}-->
+                {{ (equipment|indexer:i).Grade }}
+                <img src = {{ (equipment|indexer:i).Icon }} >
+            </div>
+            <div class ="accessories">
+                {% else %}
+                {{ (equipment|indexer:i).Type }} <!--equipment[i].Type }}-->
+                {{ (equipment|indexer:i).Grade }}
+                <img src = {{ (equipment|indexer:i).Icon }} >
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
 </html>

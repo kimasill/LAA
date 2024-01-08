@@ -1,8 +1,11 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.template import loader
+from django import template
 from .models import Character
 import lostAPI
+
+register = template.Library()
 
 def index(request):
     characters = lostAPI.getCharacterInfo("엉루지") #test string
@@ -27,4 +30,8 @@ def detail(request, character_name):
 def results(request, character_id):
     response = "looking here character's details %s."
     return HttpResponse(response % character_id)
+
+@register.filter
+def indexer(model, index):
+    return model[index]
 
